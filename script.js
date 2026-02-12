@@ -39,7 +39,7 @@ setTimeout(showNextContainer, 3000);
 const buttonNo = document.querySelector(".button-no");
 const noTexts = [
     "Jesteś pewna?",
-    "Na prawdę?",
+    "Naprawdę?",
     "Kochanie, proszę",
     "Błagam Cię!"
 ];
@@ -71,4 +71,5 @@ buttonYes.addEventListener("click", () => {
 
     container4.style.display = "block";
     container4.classList.add("show");
+
 });
