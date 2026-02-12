@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynki 14.02.2026 ❤️</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgb(240, 215, 230);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            top: 120vh;
+            color: rgba(200, 80, 130, 0.3);
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateX(0) translateY(0) scale(1); }
+            to { transform: translateX(0) translateY(-140vh) scale(1.2); }
+        }
+
+        .blur-bg {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            filter: blur(100px);
+            z-index: -1;
+        }
+
+        .blur1 { top: -200px; left: -200px; background-color: rgba(200, 80, 130, 0.3); }
+        .blur2 { bottom: -200px; right: -200px; background-color: rgba(200, 80, 130, 0.3); }
+
+        .container {
+            width: calc(100% - 40px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(200, 80, 130, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            display: none;
+        }
+
+        .container h1,
+        .container .text-heart {
+            color: rgb(200, 80, 130);
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .show { 
+            display: block;
+            animation: fadeIn 1s forwards; 
+        }
+        .hide { 
+            animation: fadeOut 1s forwards; 
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+
+        .container3-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 16px;
+        }
+
+        .container3-buttons button {
+            width: 80%;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 0px;
+            font-size: 24px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .container3-buttons .button-yes {
+            background-color: rgb(200, 80, 130);
+            border: 2px solid rgba(200, 80, 130, 0.3);
+        }
+
+        .container3-buttons .button-no {
+            border: 2px solid rgb(200, 80, 130);
+            color: rgb(200, 80, 130);
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container1">
+        <img src="giphy-container1.gif" alt="giphy-1 icon">
+        <h1>Hej, kochanie!</h1>
+    </div>
+
+    <div class="container" id="container2">
+        <img src="giphy-container2.gif" alt="giphy-2 icon">
+        <h1>Mam do Ciebie jedno pytanie...</h1>
+    </div>
+
+    <div class="container" id="container3">
+        <img src="giphy-container3.gif" alt="giphy-3 icon">
+        <h1>Czy zostaniesz moją Walentynką?</h1>
+
+        <div class="container3-buttons">
+            <button class="button-yes">Tak</button>
+            <button class="button-no">Nie</button>
+        </div>
+    </div>
+
+    <div class="blur-bg blur1"></div>
+    <div class="blur-bg blur2"></div>
+
+<script>
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = '<i class="ri-heart-fill"></i>';
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        heart.style.animationDuration = "8s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+    }, 400);
+
+    const containers = [
+        document.getElementById("container1"),
+        document.getElementById("container2"),
+        document.getElementById("container3")
+    ];
+
+    let current = 0;
+
+    function showNextContainer() {
+        if (current > 0 && current < containers.length) {
+            containers[current - 1].classList.remove("show");
+            containers[current - 1].classList.add("hide");
+        }
+
+        if (current < containers.length) {
+            containers[current].classList.remove("hide");
+            containers[current].classList.add("show");
+            current++;
+
+            if (current < containers.length) {
+                setTimeout(showNextContainer, 1000); // 5
+            }
+        }
+    }
+
+    setTimeout(showNextContainer, 1000);
+</script>
+
+
+
+
+</body>
+</html>
