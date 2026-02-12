@@ -15,6 +15,7 @@
 
         body {
             background-color: rgb(240, 215, 230);
+            min-height: 100vh;
             overflow: hidden;
             position: relative;
         }
@@ -72,7 +73,6 @@
             margin-top: 10px;
         }
 
-        /* Animacje fade in/out */
         .show { animation: fadeIn 1s forwards; }
         .hide { animation: fadeOut 1s forwards; }
 
@@ -88,18 +88,14 @@
     </style>
 </head>
 <body>
-
-    <!-- Container 1 -->
     <div class="container" id="container1">
         <h1>Hej, kochanie! <i class="text-heart ri-heart-fill"></i></h1>
     </div>
 
-    <!-- Container 2 -->
     <div class="container" id="container2">
         <h1>Mam do Ciebie jedno pytanie...</h1>
     </div>
 
-    <!-- Container 3 (zostaje na stałe) -->
     <div class="container" id="container3">
         <h1>Czy zostaniesz moją Walentynką? ❤️</h1>
     </div>
@@ -108,7 +104,6 @@
     <div class="blur-bg blur2"></div>
 
     <script>
-        // Serduszka w tle
         setInterval(() => {
             const heart = document.createElement("div");
             heart.className = "heart";
@@ -120,7 +115,6 @@
             setTimeout(() => heart.remove(), 8000);
         }, 400);
 
-        // Animacja containerów
         const containers = [
             document.getElementById("container1"),
             document.getElementById("container2"),
@@ -130,16 +124,21 @@
         let current = 0;
 
         function showNext() {
-            if (current > 0 && current < containers.length - 1) {
-                containers[current - 1].classList.remove("show");
-                containers[current - 1].classList.add("hide");
+            if (current > 0) {
+                if (current < containers.length) {
+                    containers[current - 1].classList.remove("show");
+                    containers[current - 1].classList.add("hide");
+                }
             }
-            
+
             if (current < containers.length) {
                 containers[current].classList.remove("hide");
                 containers[current].classList.add("show");
                 current++;
-                setTimeout(showNext, 3000);
+
+                if (current < containers.length) {
+                    setTimeout(showNext, 3000);
+                }
             }
         }
 
